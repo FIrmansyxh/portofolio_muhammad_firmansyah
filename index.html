@@ -737,6 +737,87 @@
       letter-spacing: .04em;
     }
 
+    /* Verification footer on each project card */
+    .proj-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Fira Code', monospace;
+      font-size: .68rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color .25s, border-color .25s;
+    }
+
+    .proj-link:hover,
+    .proj-link:focus-visible {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      outline: none;
+    }
+
+    .proj-link .arw {
+      font-size: .8rem;
+      line-height: 1;
+    }
+
+    .proj-nda {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-family: 'Fira Code', monospace;
+      font-size: .66rem;
+      letter-spacing: .03em;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .nda-tag {
+      flex-shrink: 0;
+      font-size: .58rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border: 1px solid var(--border-s);
+      border-radius: 4px;
+      color: var(--text);
+    }
+
+    .gallery-note {
+      max-width: 660px;
+      margin: 0 0 26px;
+      font-family: 'Fira Code', monospace;
+      font-size: .72rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .gallery-note a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(204, 255, 0, .35);
+    }
+
+    .gallery-note a:hover {
+      border-bottom-color: var(--accent);
+    }
+
     .scroll-hint {
       display: flex;
       align-items: center;
@@ -1329,6 +1410,11 @@
           <button type="button" class="scroll-btn" id="wallNext" aria-label="Next project">&#8594;</button>
         </div>
       </div>
+      <p class="gallery-note fade-up">
+        Open builds link straight to the repo. Everything else is client or employer IP, so the code,
+        data and design files stay closed by design — not by omission. Want to see one?
+        <a href="#contact">Ask me</a> and I'll walk you through it live.
+      </p>
       <div class="scroll-wall-wrapper fade-up" id="wall">
         <div class="scroll-wall">
 
@@ -1361,6 +1447,10 @@
                 </ul>
               </div>
               <div class="proj-chips"><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">SQLite</span><span class="chip">Spec-Driven</span><span class="chip">AI Agents</span><span class="chip">Playwright</span></div>
+              <div class="proj-links">
+                <a class="proj-link" href="https://github.com/FIrmansyxh/IELTS-Learning-Platform" target="_blank" rel="noopener noreferrer">Repository <span class="arw" aria-hidden="true">↗</span></a>
+                <a class="proj-link" href="https://github.com/FIrmansyxh/IELTS-Learning-Platform/tree/main/specifications" target="_blank" rel="noopener noreferrer">Spec documents <span class="arw" aria-hidden="true">↗</span></a>
+              </div>
             </div>
           </div>
 
@@ -1393,6 +1483,9 @@
                 </ul>
               </div>
               <div class="proj-chips"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Laravel API</span><span class="chip">PostgreSQL</span><span class="chip">RBAC</span><span class="chip">Offline-first</span></div>
+              <div class="proj-links">
+                <a class="proj-link" href="https://github.com/FIrmansyxh/ERP-Sekar-Maju-Sejahtera" target="_blank" rel="noopener noreferrer">Repository <span class="arw" aria-hidden="true">↗</span></a>
+              </div>
             </div>
           </div>
 
@@ -1431,6 +1524,7 @@
               <div class="proj-chips"><span class="chip">PRD</span><span class="chip">AI/ML</span><span
                   class="chip">Figma</span><span class="chip">User Research</span><span class="chip">Gamification</span>
               </div>
+              <div class="proj-nda"><span class="nda-tag">Private</span>Vascomm internal product, repo stays closed</div>
             </div>
           </div>
 
@@ -1467,6 +1561,7 @@
               </div>
               <div class="proj-chips"><span class="chip">Chatbot</span><span class="chip">RAG</span><span
                   class="chip">WhatsApp API</span><span class="chip">B2B SaaS</span></div>
+              <div class="proj-nda"><span class="nda-tag">Private</span>Client deployment — code owned by Vascomm</div>
             </div>
           </div>
 
@@ -1503,6 +1598,7 @@
               </div>
               <div class="proj-chips"><span class="chip">HR Tech</span><span class="chip">AI Scoring</span><span
                   class="chip">ATS Integration</span><span class="chip">Product Design</span></div>
+              <div class="proj-nda"><span class="nda-tag">Private</span>Confidential HR build — can demo live on a call</div>
             </div>
           </div>
 
@@ -1539,6 +1635,7 @@
               </div>
               <div class="proj-chips"><span class="chip">CRM</span><span class="chip">Lead Gen</span><span
                   class="chip">HubSpot</span><span class="chip">WA Business API</span></div>
+              <div class="proj-nda"><span class="nda-tag">Private</span>Vascomm internal, no public code</div>
             </div>
           </div>
 
@@ -1574,6 +1671,7 @@
               </div>
               <div class="proj-chips"><span class="chip">Agile</span><span class="chip">UX Research</span><span
                   class="chip">Figma</span><span class="chip">Conversion</span></div>
+              <div class="proj-nda"><span class="nda-tag">Private</span>Eduwork internal repo, screens on request</div>
             </div>
           </div>
 
@@ -1610,6 +1708,7 @@
               </div>
               <div class="proj-chips"><span class="chip">UX Design</span><span class="chip">Figma</span><span
                   class="chip">IA</span><span class="chip">ClickUp</span></div>
+              <div class="proj-nda"><span class="nda-tag">Private</span>Internal repo; Figma file on request</div>
             </div>
           </div>
 
@@ -1645,6 +1744,7 @@
               </div>
               <div class="proj-chips"><span class="chip">Pitch Deck</span><span class="chip">Business Model</span><span
                   class="chip">Figma</span><span class="chip">Stakeholder</span></div>
+              <div class="proj-nda"><span class="nda-tag">NDA</span>Deck under NDA — happy to present it live</div>
             </div>
           </div>
 
@@ -1680,6 +1780,7 @@
               </div>
               <div class="proj-chips"><span class="chip">UX Research</span><span class="chip">Figma</span><span
                   class="chip">A/B Testing</span><span class="chip">Benchmarking</span></div>
+              <div class="proj-nda"><span class="nda-tag">Private</span>Vidio internal — design files on request</div>
             </div>
           </div>
 
@@ -1715,6 +1816,7 @@
               </div>
               <div class="proj-chips"><span class="chip">MoEngage</span><span class="chip">HTML/CSS/JS</span><span
                   class="chip">CRM</span><span class="chip">In-App</span></div>
+              <div class="proj-nda"><span class="nda-tag">Private</span>Vidio internal build, assets not public</div>
             </div>
           </div>
 
@@ -1751,6 +1853,7 @@
               </div>
               <div class="proj-chips"><span class="chip">Visual Design</span><span class="chip">Canva</span><span
                   class="chip">Campaign</span><span class="chip">Conversion</span></div>
+              <div class="proj-nda"><span class="nda-tag">Private</span>Campaign assets owned by Vidio</div>
             </div>
           </div>
 
@@ -1786,6 +1889,7 @@
               </div>
               <div class="proj-chips"><span class="chip">GCP</span><span class="chip">Ansible</span><span
                   class="chip">Cloud Automation</span><span class="chip">Google Certified</span></div>
+              <div class="proj-nda"><span class="nda-tag">On request</span>Capstone repo available on request</div>
             </div>
           </div>
 
