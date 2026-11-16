@@ -524,6 +524,38 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      cursor: zoom-in;
+      transition: transform .5s ease;
+    }
+
+    .proj-card:hover .proj-media img {
+      transform: scale(1.04);
+    }
+
+    /* hover hint */
+    .proj-media::after {
+      content: '⤢ View full';
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      padding: 5px 11px;
+      font-family: 'Fira Code', monospace;
+      font-size: .6rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent-ink);
+      background: var(--accent);
+      border-radius: 999px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .25s ease, transform .25s ease;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .proj-media:hover::after {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .proj-media-placeholder {
@@ -982,6 +1014,174 @@
         text-align: center;
       }
     }
+
+    /* ── LIGHTBOX (project image preview) ── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(16px, 4vw, 56px);
+      background: rgba(5, 5, 5, .93);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity .3s ease, visibility .3s ease;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    body.lb-open {
+      overflow: hidden;
+    }
+
+    .lightbox-figure {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      max-width: 100%;
+      transform: scale(.94);
+      transition: transform .32s cubic-bezier(.22, .61, .36, 1);
+    }
+
+    .lightbox.open .lightbox-figure {
+      transform: scale(1);
+    }
+
+    .lightbox-img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: min(1240px, 92vw);
+      max-height: 82vh;
+      object-fit: contain;
+      background: var(--bg2);
+      border: 1px solid var(--border-s);
+      border-radius: 10px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, .8);
+    }
+
+    .lightbox-caption {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: 'Fira Code', monospace;
+      font-size: .7rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .lightbox-count {
+      padding: 3px 9px;
+      border: 1px solid var(--border-s);
+      border-radius: 999px;
+      color: var(--accent);
+    }
+
+    .lightbox-btn {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      font-size: 1.05rem;
+      line-height: 1;
+      color: var(--text);
+      background: rgba(22, 22, 22, .85);
+      border: 1px solid var(--border-s);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background .25s, color .25s, border-color .25s, transform .25s;
+    }
+
+    .lightbox-btn:hover,
+    .lightbox-btn:focus-visible {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-ink);
+      outline: none;
+    }
+
+    .lightbox-btn[hidden] {
+      display: none;
+    }
+
+    .lightbox-close {
+      top: clamp(14px, 2.4vw, 28px);
+      right: clamp(14px, 2.4vw, 28px);
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .lightbox-prev {
+      left: clamp(10px, 2vw, 28px);
+    }
+
+    .lightbox-next {
+      right: clamp(10px, 2vw, 28px);
+    }
+
+    .lightbox-prev:hover,
+    .lightbox-next:hover {
+      transform: translateY(-50%) scale(1.06);
+    }
+
+    @media (max-width: 768px) {
+      .lightbox {
+        padding: 16px;
+      }
+
+      .lightbox-img {
+        max-width: 94vw;
+        max-height: 76vh;
+      }
+
+      .lightbox-btn {
+        width: 40px;
+        height: 40px;
+        font-size: .95rem;
+      }
+
+      .lightbox-prev,
+      .lightbox-next {
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
+      }
+
+      .lightbox-prev:hover,
+      .lightbox-next:hover {
+        transform: translateY(-50%) scale(1.06);
+      }
+
+      .lightbox-prev {
+        left: 8px;
+      }
+
+      .lightbox-next {
+        right: 8px;
+      }
+    }
   </style>
 </head>
 
@@ -1039,20 +1239,20 @@
         </div>
         <div class="about-stats fade-up">
           <div class="stat-card">
-            <div class="stat-num">6+</div>
-            <div class="stat-label">AI/Automation Opportunities Identified</div>
+            <div class="stat-num">13</div>
+            <div class="stat-label">Projects &amp; Case Studies Shipped</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">7</div>
+            <div class="stat-label">Internal Divisions Audited for Automation</div>
           </div>
           <div class="stat-card">
             <div class="stat-num">100+</div>
-            <div class="stat-label">Users Interviewed for Research</div>
+            <div class="stat-label">Educators &amp; Students Interviewed</div>
           </div>
           <div class="stat-card">
-            <div class="stat-num">3</div>
-            <div class="stat-label">Concurrent UAT Projects Managed</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">40%</div>
-            <div class="stat-label">User Engagement Increase at Vidio</div>
+            <div class="stat-num">10+</div>
+            <div class="stat-label">ERP Modules Mapped, Sorting to Delivery</div>
           </div>
         </div>
       </div>
@@ -1686,19 +1886,19 @@
         <div class="edu-card fade-up">
           <div class="edu-year">Apr — May 2026</div>
           <div class="edu-degree">LLM-Based Tools & Gemini API Integration for Data Scientists</div>
-          <div class="edu-school">Hacktiv8 Indonesia · Maju Bareng AI Program</div>
+          <div class="edu-school">Hacktiv8 Indonesia — Maju Bareng AI Program</div>
           <div class="edu-detail">10 Hours · Supported by Google.org & ADB</div>
         </div>
         <div class="edu-card fade-up">
           <div class="edu-year">Feb 2025</div>
           <div class="edu-degree">Pengantar Manajemen Proyek (Introduction to Project Management)</div>
-          <div class="edu-school">IBM · Coursera</div>
+          <div class="edu-school">IBM via Coursera</div>
           <div class="edu-detail">Score: 88% · 6 Courses</div>
         </div>
         <div class="edu-card fade-up">
           <div class="edu-year">Jan 2025</div>
           <div class="edu-degree">Google Project Management Professional Certificate</div>
-          <div class="edu-school">Google · Coursera</div>
+          <div class="edu-school">Google via Coursera</div>
           <div class="edu-detail">6 Courses · Agile & Traditional PM</div>
         </div>
         <div class="edu-card fade-up">
@@ -1716,7 +1916,7 @@
         <div class="edu-card fade-up">
           <div class="edu-year">Apr 2023</div>
           <div class="edu-degree">Google IT Support Certificate</div>
-          <div class="edu-school">Google · Coursera</div>
+          <div class="edu-school">Google via Coursera</div>
           <div class="edu-detail">Verified via Credly</div>
         </div>
       </div>
@@ -1791,6 +1991,20 @@
     <span style="font-size:.65rem; letter-spacing:.15em">PRODUCT MANAGER · PAMEKASAN, ID</span>
   </footer>
 
+  <!-- LIGHTBOX / IMAGE PREVIEW -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Project image preview" aria-hidden="true">
+    <button type="button" class="lightbox-btn lightbox-close" id="lightboxClose" aria-label="Close preview">&#10005;</button>
+    <button type="button" class="lightbox-btn lightbox-prev" id="lightboxPrev" aria-label="Previous image">&#8592;</button>
+    <button type="button" class="lightbox-btn lightbox-next" id="lightboxNext" aria-label="Next image">&#8594;</button>
+    <figure class="lightbox-figure">
+      <img class="lightbox-img" id="lightboxImg" alt="" decoding="async">
+      <figcaption class="lightbox-caption">
+        <span id="lightboxCaption"></span>
+        <span class="lightbox-count" id="lightboxCount"></span>
+      </figcaption>
+    </figure>
+  </div>
+
   <script>
     /* Gallery arrows */
     const wall = document.getElementById('wall');
@@ -1812,6 +2026,113 @@
       entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
     }, { threshold: .12 });
     document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+    /* Lightbox — click a project image to view it enlarged, centered */
+    const galleryImgs = Array.from(document.querySelectorAll('.proj-media img'));
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    const lbCaption = document.getElementById('lightboxCaption');
+    const lbCount = document.getElementById('lightboxCount');
+    const lbClose = document.getElementById('lightboxClose');
+    const lbPrev = document.getElementById('lightboxPrev');
+    const lbNext = document.getElementById('lightboxNext');
+    let lbIndex = 0;
+    let lbLastFocus = null;
+
+    const projectTitleFor = img => {
+      const card = img.closest('.proj-card');
+      const title = card && card.querySelector('.proj-title');
+      return title ? title.textContent.trim() : (img.alt || '');
+    };
+
+    const renderLightbox = () => {
+      const img = galleryImgs[lbIndex];
+      if (!img) return;
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.alt || '';
+      lbCaption.textContent = projectTitleFor(img);
+      lbCount.textContent = (lbIndex + 1) + ' / ' + galleryImgs.length;
+    };
+
+    const openLightbox = index => {
+      if (!galleryImgs.length) return;
+      lbIndex = (index + galleryImgs.length) % galleryImgs.length;
+      lbLastFocus = document.activeElement;
+      renderLightbox();
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lb-open');
+      void lightbox.offsetWidth; /* force style recalc so the visible dialog can take focus */
+      lbClose.focus({ preventScroll: true });
+    };
+
+    const closeLightbox = () => {
+      if (!lightbox.classList.contains('open')) return;
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lb-open');
+      if (lbLastFocus && lbLastFocus.focus) lbLastFocus.focus({ preventScroll: true });
+    };
+
+    const moveLightbox = dir => {
+      if (!galleryImgs.length) return;
+      lbIndex = (lbIndex + dir + galleryImgs.length) % galleryImgs.length;
+      renderLightbox();
+    };
+
+    galleryImgs.forEach((img, i) => {
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', 'Enlarge preview: ' + (img.alt || 'project image'));
+      img.addEventListener('click', () => openLightbox(i));
+      img.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+          e.preventDefault();
+          openLightbox(i);
+        }
+      });
+    });
+
+    if (galleryImgs.length < 2) {
+      lbPrev.hidden = true;
+      lbNext.hidden = true;
+    }
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', () => moveLightbox(-1));
+    lbNext.addEventListener('click', () => moveLightbox(1));
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') {
+        closeLightbox();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        moveLightbox(1);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        moveLightbox(-1);
+      }
+    });
+
+    /* Guard: keep focus inside the lightbox while it is open */
+    lightbox.addEventListener('keydown', e => {
+      if (e.key !== 'Tab') return;
+      const focusables = [lbClose, lbPrev, lbNext].filter(el => !el.hidden);
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
   </script>
 </body>
 
