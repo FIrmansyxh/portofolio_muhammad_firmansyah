@@ -448,7 +448,7 @@
 
     .scroll-wall-wrapper {
       overflow-x: auto;
-      cursor: grab;
+      scroll-behavior: smooth;
       scrollbar-width: none;
       -ms-overflow-style: none;
       padding-bottom: 12px;
@@ -717,6 +717,47 @@
       margin-top: -40px;
     }
 
+    .scroll-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: -40px;
+      margin-bottom: 20px;
+    }
+
+    .scroll-controls .scroll-hint {
+      margin: 0;
+    }
+
+    .scroll-btns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .scroll-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--border-s);
+      background: var(--card);
+      color: var(--white);
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, opacity .2s;
+    }
+
+    .scroll-btn:hover:not(:disabled) {
+      background: var(--card-hov);
+      border-color: var(--accent);
+    }
+
+    .scroll-btn:disabled {
+      opacity: .3;
+      cursor: not-allowed;
+    }
+
     .scroll-hint .arrows {
       animation: slideRight 1.4s infinite;
       color: var(--accent);
@@ -835,8 +876,9 @@
     }
 
     .edu-school {
-      font-size: .88rem;
-      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
       margin-bottom: 12px;
     }
 
@@ -990,9 +1032,9 @@
           <p>I'm a Product Manager and Project Manager with a strong foundation in translating complex business
             challenges into scalable digital products. My work sits at the intersection of technology, design, and
             human-centered thinking.</p>
-          <p>With experience across AI platforms, edtech, and OTT streaming, I work closely with cross-functional teams
+          <p>With 1+ year of hands-on experience across AI platforms, edtech, and OTT streaming, I work closely with cross-functional teams
             throughout the full product lifecycle — from discovery and research to launch and iteration.</p>
-          <p>I graduated with a Bachelor's in Information Technology from Telkom University Surabaya with a 3.62 GPA,
+          <p>I graduated with a Bachelor's in Information Technology from Telkom University Surabaya with a 3.62 GPA (Cum Laude),
             and completed Bangkit Academy's Cloud Computing path, graduating with Distinction.</p>
         </div>
         <div class="about-stats fade-up">
@@ -1031,14 +1073,18 @@
           <ul class="exp-list">
             <li>Identified and validated 6 new AI/Automation platform opportunities through product discovery and market
               research.</li>
-            <li>Analyzed operational pain points across 7 internal divisions, prioritizing solutions by effort and
-              urgency.</li>
             <li>Managed UAT for 3 concurrent AI projects, achieving 100% core functionality readiness before
-              go-to-market.</li>
+              go-to-market and internal usage.</li>
             <li>Conducted user research with 100+ educators and students, synthesizing insights into user stories that
               directly informed the product roadmap.</li>
+            <li>Analyzed operational pain points across 7 internal divisions, prioritizing solutions by effort and
+              urgency.</li>
             <li>Delivered a company-wide AI literacy training program, resulting in measurable improvements in AI tool
               adoption across multiple divisions.</li>
+            <li>Conducted MoM documentation for internal team meetings and client/prospect meetings, ensuring
+              structured follow-ups and accountability.</li>
+            <li>Performed PoC analysis and maintained end-to-end development processes for 3 products: Subscription
+              Guardian (internal platform), AI Enrichment, and AI Knowledge Agent (Sitamoto.ai).</li>
           </ul>
         </div>
         <div class="exp-item">
@@ -1076,9 +1122,79 @@
     <div class="section-wrap">
       <div class="section-label fade-up">Projects</div>
       <h2 class="fade-up">Project Gallery</h2>
-      <div class="scroll-hint fade-up"><span class="arrows">→ →</span> Drag to explore</div>
+      <div class="scroll-controls fade-up">
+        <div class="scroll-hint"><span class="arrows">→ →</span> Use the arrows to explore</div>
+        <div class="scroll-btns">
+          <button type="button" class="scroll-btn" id="wallPrev" aria-label="Previous project">&#8592;</button>
+          <button type="button" class="scroll-btn" id="wallNext" aria-label="Next project">&#8594;</button>
+        </div>
+      </div>
       <div class="scroll-wall-wrapper fade-up" id="wall">
         <div class="scroll-wall">
+
+          <!-- NEW 01: IELTS Learning Platform -->
+          <div class="proj-card">
+            <div class="proj-media">
+              <img src="assets/ielts-platform.webp" alt="IELTS Learning Platform" style="object-position:left top" loading="lazy" decoding="async">
+              <div class="proj-media-badge">🎓</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tag">Self-Initiated · End-to-End Build</div>
+              <div class="proj-title">IELTS Learning Platform</div>
+              <div class="proj-desc">Self-initiated end-to-end build to sharpen AI-assisted, spec-driven product delivery. A Bahasa Indonesia learning platform from A1 to C1 with a 4-tier curriculum, gated progression, Skip Test, 7 question types, and local AI Writing grading. A free English learning platform for my own IELTS prep is the bonus.</div>
+              <div class="proj-divider"></div>
+              <div class="proj-detail-grid">
+                <div>
+                  <div class="proj-detail-label">Role</div>
+                  <div class="proj-detail-value">System Analyst &amp; Prompter</div>
+                </div>
+                <div>
+                  <div class="proj-detail-label">Timeline</div>
+                  <div class="proj-detail-value">2026 · Personal Project</div>
+                </div>
+              </div>
+              <div class="proj-impact">
+                <div class="proj-impact-label">Impact</div>
+                <ul>
+                  <li>4-tier curriculum with gated progression and band estimate</li>
+                  <li>25 written specifications, runs 100% locally at zero cost</li>
+                </ul>
+              </div>
+              <div class="proj-chips"><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">SQLite</span><span class="chip">Spec-Driven</span><span class="chip">AI Agents</span><span class="chip">Playwright</span></div>
+            </div>
+          </div>
+
+          <!-- NEW 02: ERP Sekar Maju -->
+          <div class="proj-card">
+            <div class="proj-media">
+              <img src="assets/erp-sekar-maju.webp" alt="ERP Sekar Maju Sejahtera" style="object-position:left top" loading="lazy" decoding="async">
+              <div class="proj-media-badge">🏭</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tag">ERP · Freelance</div>
+              <div class="proj-title">ERP for Sekar Anom Group (Tobacco Warehouse)</div>
+              <div class="proj-desc">Freelance ERP for Sekar Anom Group, one of the largest tobacco businesses in Madura. Covers farmer registration, sorting, weighing, cashier, stock, sample and regular shipments, plus analytics dashboards and Excel reports. Built with 1 Fullstack Developer.</div>
+              <div class="proj-divider"></div>
+              <div class="proj-detail-grid">
+                <div>
+                  <div class="proj-detail-label">Role</div>
+                  <div class="proj-detail-value">System Analyst, Prompter &amp; Project Manager</div>
+                </div>
+                <div>
+                  <div class="proj-detail-label">Timeline</div>
+                  <div class="proj-detail-value">2026 · Freelance</div>
+                </div>
+              </div>
+              <div class="proj-impact">
+                <div class="proj-impact-label">Impact</div>
+                <ul>
+                  <li>End-to-end warehouse flow, sorting to delivery, in 10+ modules</li>
+                  <li>6 user roles with role-based access and offline-capable sync</li>
+                </ul>
+              </div>
+              <div class="proj-chips"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Laravel API</span><span class="chip">PostgreSQL</span><span class="chip">RBAC</span><span class="chip">Offline-first</span></div>
+            </div>
+          </div>
 
           <!-- PROJECT 01 — to add a real image, replace the whole .proj-media
              div's content with: <img src="images/your-file.jpg" alt="Project name"> -->
@@ -1491,7 +1607,7 @@
             <span class="skill-tag">Agile Methodology</span><span class="skill-tag">PRD Writing</span><span
               class="skill-tag">User Story Dev</span><span class="skill-tag">Roadmapping</span><span
               class="skill-tag">A/B Testing</span><span class="skill-tag">SaaS KPI Monitoring</span><span
-              class="skill-tag">Pitch Deck</span>
+              class="skill-tag">Pitch Deck</span><span class="skill-tag">Scrum</span><span class="skill-tag">SDLC</span><span class="skill-tag">Backlog Management</span><span class="skill-tag">Sprint Planning</span>
           </div>
         </div>
         <div class="skill-group fade-up">
@@ -1500,7 +1616,7 @@
           <div class="skill-tags">
             <span class="skill-tag">Data Analytics</span><span class="skill-tag">User Research</span><span
               class="skill-tag">Usability Testing</span><span class="skill-tag">Customer Journey Mapping</span><span
-              class="skill-tag">Competitive Research</span><span class="skill-tag">Market Sizing</span>
+              class="skill-tag">Competitive Research</span><span class="skill-tag">Market Sizing</span><span class="skill-tag">Google Analytics</span>
           </div>
         </div>
         <div class="skill-group fade-up">
@@ -1510,7 +1626,7 @@
             <span class="skill-tag">Jira</span><span class="skill-tag">Confluence</span><span
               class="skill-tag">Postman</span><span class="skill-tag">ClickUp</span><span
               class="skill-tag">Trello</span><span class="skill-tag">Notion</span><span class="skill-tag">Google
-              Workspace</span>
+              Workspace</span><span class="skill-tag">ITIL Fundamentals</span>
           </div>
         </div>
         <div class="skill-group fade-up">
@@ -1542,6 +1658,14 @@
         </div>
         <div class="skill-group fade-up">
           <span class="skill-group-num">07</span>
+          <div class="skill-group-title">UAT &amp; Quality</div>
+          <div class="skill-tags">
+            <span class="skill-tag">UAT Coordination</span><span class="skill-tag">Bug Tracking</span><span
+              class="skill-tag">API Endpoint Validation</span><span class="skill-tag">Test Case Authoring</span>
+          </div>
+        </div>
+        <div class="skill-group fade-up">
+          <span class="skill-group-num">08</span>
           <div class="skill-group-title">Soft Skills</div>
           <div class="skill-tags">
             <span class="skill-tag">Cross-functional Leadership</span><span class="skill-tag">Stakeholder
@@ -1607,15 +1731,17 @@
       <div class="edu-grid">
         <div class="edu-card fade-up">
           <div class="edu-year">Sep 2020 — Oct 2024</div>
-          <div class="edu-degree">Bachelor of Information Technology</div>
+          <div class="edu-degree">Bachelor of Information Technology, Cum Laude</div>
           <div class="edu-school">Telkom University Surabaya</div>
-          <div class="edu-detail">GPA: 3.62 / 4.00</div>
+          <div class="edu-detail">GPA: 3.62 / 4.00 · Cum Laude</div>
+          <div class="edu-detail" style="margin-top:8px">Software Engineering · System Analysis &amp; Design · Database Management · Project Management</div>
         </div>
         <div class="edu-card fade-up">
           <div class="edu-year">Feb 2023 — Jul 2023</div>
           <div class="edu-degree">Cloud Computing Learning Path</div>
           <div class="edu-school">Bangkit Academy 2023 Batch 1</div>
           <div class="edu-detail">Graduate with Distinction · 94.35/100 · Google IT Support Certified</div>
+          <div class="edu-detail" style="margin-top:8px">Top 5, Time Management Challenge · Top 50, Pitch Your Capstone Project · Top 68, Capstone Product-Based</div>
         </div>
       </div>
     </div>
@@ -1666,13 +1792,20 @@
   </footer>
 
   <script>
-    /* Scroll drag */
+    /* Gallery arrows */
     const wall = document.getElementById('wall');
-    let isDown = false, startX, scrollLeft;
-    wall.addEventListener('mousedown', e => { isDown = true; wall.style.cursor = 'grabbing'; startX = e.pageX - wall.offsetLeft; scrollLeft = wall.scrollLeft; });
-    wall.addEventListener('mouseleave', () => { isDown = false; wall.style.cursor = 'grab'; });
-    wall.addEventListener('mouseup', () => { isDown = false; wall.style.cursor = 'grab'; });
-    wall.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - wall.offsetLeft; wall.scrollLeft = scrollLeft - (x - startX) * 1.4; });
+    const prevBtn = document.getElementById('wallPrev');
+    const nextBtn = document.getElementById('wallNext');
+    const step = () => { const c = wall.querySelector('.proj-card'); return c ? c.offsetWidth + 24 : 400; };
+    const syncBtns = () => {
+      prevBtn.disabled = wall.scrollLeft <= 4;
+      nextBtn.disabled = wall.scrollLeft >= wall.scrollWidth - wall.clientWidth - 4;
+    };
+    prevBtn.addEventListener('click', () => wall.scrollBy({ left: -step(), behavior: 'smooth' }));
+    nextBtn.addEventListener('click', () => wall.scrollBy({ left: step(), behavior: 'smooth' }));
+    wall.addEventListener('scroll', syncBtns, { passive: true });
+    window.addEventListener('resize', syncBtns);
+    syncBtns();
 
     /* Fade-up */
     const obs = new IntersectionObserver(entries => {
